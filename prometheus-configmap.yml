@@ -36,4 +36,8 @@ data:
 
         static_configs:
         - targets: ['localhost:9100','k8s-node-1:9100']
-        
+      
+      - job_name: 'pushgateway'
+        honor_labels: true
+        static_configs:
+        - targets: ['localhost:9091']
