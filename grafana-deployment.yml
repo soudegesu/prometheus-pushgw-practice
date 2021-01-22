@@ -18,8 +18,14 @@ spec:
       containers:
         - name: grafana
           image: grafana/grafana:latest
-          #args:
-          #  - "--config.file=/root/prometheus.yml"
-          #  - "--storage.tsdb.path=/prometheus/"
+          # args:
+          #  - "--config=/etc/config/datasources/datasources.yml"
           ports:
             - containerPort: 3000
+          volumeMounts:
+            - name: config-vol
+              mountPath: /etc/grafana/provisioning/datasources
+      volumes:
+        - name: config-vol
+          configMap:
+            name: grafana-server-conf
