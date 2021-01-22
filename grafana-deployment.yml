@@ -23,9 +23,20 @@ spec:
           ports:
             - containerPort: 3000
           volumeMounts:
-            - name: config-vol
+            - name: datasources-config-vol
               mountPath: /etc/grafana/provisioning/datasources
+            - name: dashboards-config-vol
+              mountPath: /etc/grafana/provisioning/dashboards
+            - name: dashboards-settings-vol
+              mountPath: /var/lib/grafana/dashboards
       volumes:
-        - name: config-vol
+        - name: datasources-config-vol
           configMap:
-            name: grafana-server-conf
+            name: grafana-datasources-conf
+        - name: dashboards-config-vol
+          configMap:
+            name: grafana-dashboards-conf
+        - name: dashboards-settings-vol
+          configMap:
+            name: grafana-dashboards-settings
+
